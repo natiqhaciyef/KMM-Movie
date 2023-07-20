@@ -5,7 +5,7 @@ import com.natiqhaciyef.kmm_movie.domain.repository.MovieRepository
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-internal class GetAllMoviesUseCase : KoinComponent{
+class GetAllMoviesUseCase : KoinComponent{
 
     private val repository: MovieRepository by inject()
 

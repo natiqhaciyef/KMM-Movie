@@ -8,7 +8,7 @@ internal fun MoviesResponse.toMovie(): MovieModel{
         id = this.id,
         title = this.originalTitle,
         description = this.overview,
-        imageUrl = this.posterImage,
+        imageUrl = getImageUrL(this.posterImage),
         releaseDate = this.releaseDate
     )
 }

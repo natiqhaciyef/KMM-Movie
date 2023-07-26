@@ -5,6 +5,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.natiqhaciyef.kmm_movie.android.details.HomeScreenState
 import com.natiqhaciyef.kmm_movie.domain.usecase.GetAllMoviesUseCase
 import kotlinx.coroutines.launch
 

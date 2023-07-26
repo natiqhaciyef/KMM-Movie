@@ -1,4 +1,4 @@
-package com.natiqhaciyef.kmm_movie.android.home
+package com.natiqhaciyef.kmm_movie.android.details
 
 import com.natiqhaciyef.kmm_movie.domain.models.MovieModel
 

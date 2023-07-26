@@ -7,10 +7,12 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.natiqhaciyef.kmm_movie.android.home.DetailsScreen
+import com.natiqhaciyef.kmm_movie.android.home.DetailsViewModel
 import com.natiqhaciyef.kmm_movie.android.home.HomeScreen
 import com.natiqhaciyef.kmm_movie.android.home.HomeViewModel
 import com.natiqhaciyef.millisoft_compose.common.ScreenId
 import org.koin.androidx.compose.koinViewModel
+import org.koin.core.parameter.parametersOf
 
 @Composable
 fun AppNavigation() {
@@ -23,9 +25,9 @@ fun AppNavigation() {
             HomeScreen(uiState = homeViewModel.uiState, loadNextMovies = {
                 homeViewModel.loadingMovies(forceReload = it)
             },
-            navigateToDetails = {
-                navController.navigate("${ScreenId.DetailsScreen.name}/${it.id}")
-            })
+                navigateToDetails = {
+                    navController.navigate("${ScreenId.DetailsScreen.name}/${it.id}")
+                })
         }
 
         composable(
@@ -37,7 +39,10 @@ fun AppNavigation() {
             )
         ) {
             val id = it.arguments?.getInt("id") ?: 0
-            DetailsScreen(id)
+            val detailsViewModel: DetailsViewModel = koinViewModel(parameters = {
+                parametersOf(id)
+            })
+            DetailsScreen(uiState = detailsViewModel.detailsUIState)
         }
 
     }

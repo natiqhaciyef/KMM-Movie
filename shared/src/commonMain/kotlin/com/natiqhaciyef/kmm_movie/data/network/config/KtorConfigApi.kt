@@ -11,10 +11,11 @@ import kotlinx.serialization.json.Json
 
 
 private const val BASE_URL = "https://api.themoviedb.org/"
-private const val API_KEY = "810d36e80428b972d893f7a52a4fd6d7"
-// api key -> 810d36e80428b972d893f7a52a4fd6d7
+private const val API_KEY = "5295d7b3effd5e4c9deedbcb3c4d2082"
+// api key -> 5295d7b3effd5e4c9deedbcb3c4d2082
+// eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI1Mjk1ZDdiM2VmZmQ1ZTRjOWRlZWRiY2IzYzRkMjA4MiIsInN1YiI6IjY0YzE4MWU0MmYxYmUwMDBjYTI2ZmNhNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.1kqAD5-_7g33pQIOjrxSqg8q6nJeK1UR9eaDZGOq6jQ
 // https://api.themoviedb.org/3/movie/157336?api_key=810d36e80428b972d893f7a52a4fd6d7
-// https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=810d36e80428b972d893f7a52a4fd6d7
+// https://api.themoviedb.org/3/movie/popular?language=en-US&page=1&api_key=5295d7b3effd5e4c9deedbcb3c4d2082
 
 
 

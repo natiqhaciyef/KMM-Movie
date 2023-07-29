@@ -33,8 +33,10 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.natiqhaciyef.kmm_movie.android.*
 import com.natiqhaciyef.kmm_movie.android.details.HomeScreenState
@@ -54,54 +56,69 @@ fun HomeScreen(
         onRefresh = { loadNextMovies.invoke(true) }
     )
 
-    Box(
+    Column(
         modifier = modifier
             .fillMaxSize()
             .background(Dark4)
             .pullRefresh(pullRefreshState)
     ) {
+        Text(
+            modifier = modifier
+                .fillMaxWidth()
+                .padding(25.dp),
+            text = "Movies",
+            fontWeight = FontWeight.Bold,
+            fontSize = 20.sp,
+            color = Color.White,
+            textAlign = TextAlign.Start
+        )
 
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(2),
-            contentPadding = PaddingValues(15.dp),
-            verticalArrangement = Arrangement.spacedBy(15.dp),
-            horizontalArrangement = Arrangement.spacedBy(15.dp)
+        Box(
+            modifier = Modifier.fillMaxWidth()
         ) {
 
-            itemsIndexed(
-                items = uiState.movies,
-                key = { _, movie -> movie.id }
-            ) { index, movie ->
-                MovieItemView(movieModel = movie) {
-                    navigateToDetails(it)
+            LazyVerticalGrid(
+                columns = GridCells.Fixed(2),
+                contentPadding = PaddingValues(15.dp),
+                verticalArrangement = Arrangement.spacedBy(15.dp),
+                horizontalArrangement = Arrangement.spacedBy(15.dp)
+            ) {
+
+                itemsIndexed(
+                    items = uiState.movies,
+                    key = { _, movie -> movie.id }
+                ) { index, movie ->
+                    MovieItemView(movieModel = movie) {
+                        navigateToDetails(it)
+                    }
+
+                    if (index >= uiState.movies.size - 1 && !uiState.loading && !uiState.loadFinished) {
+                        LaunchedEffect(key1 = Unit, block = {
+                            loadNextMovies.invoke(false)
+                        })
+                    }
                 }
 
-                if (index >= uiState.movies.size - 1 && !uiState.loading && !uiState.loadFinished) {
-                    LaunchedEffect(key1 = Unit, block = {
-                        loadNextMovies.invoke(false)
-                    })
-                }
-            }
-
-            if (uiState.loading && uiState.movies.isNotEmpty()) {
-                item(span = { GridItemSpan(2) }) {
-                    Row(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(20.dp),
-                        horizontalArrangement = Arrangement.Center,
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        CircularProgressIndicator(color = Red)
+                if (uiState.loading && uiState.movies.isNotEmpty()) {
+                    item(span = { GridItemSpan(2) }) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(20.dp),
+                            horizontalArrangement = Arrangement.Center,
+                            verticalAlignment = Alignment.CenterVertically,
+                        ) {
+                            CircularProgressIndicator(color = Red)
+                        }
                     }
                 }
             }
-        }
 
-        PullRefreshIndicator(
-            refreshing = uiState.refreshing, state = pullRefreshState,
-            modifier = modifier.align(Alignment.TopCenter)
-        )
+            PullRefreshIndicator(
+                refreshing = uiState.refreshing, state = pullRefreshState,
+                modifier = modifier.align(Alignment.TopCenter)
+            )
+        }
     }
 }
 

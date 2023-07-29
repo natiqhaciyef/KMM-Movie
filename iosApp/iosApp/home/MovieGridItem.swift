@@ -24,7 +24,7 @@ struct MovieGridItem: View {
                 }
             }.frame(idealWidth: .infinity, maxWidth: .infinity)
                 .clipShape(RoundedRectangle(cornerRadius: 12))
-        }
+        }.frame(maxWidth: .infinity, maxHeight: 260 )
     }
 }
 

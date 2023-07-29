@@ -9,6 +9,7 @@
 import Foundation
 import shared
 
+@MainActor
 class HomeViewModel: ObservableObject{
     
     private let getMoviesUseCase = GetAllMoviesUseCase.init()

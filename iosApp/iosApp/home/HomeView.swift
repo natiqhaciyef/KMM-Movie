@@ -46,7 +46,7 @@ struct HomeView: View {
                     }
                     .padding(.horizontal, 15)
                     .navigationDestination(for: MovieModel.self){ movie in
-                        
+                        DetailView(movie: movie)
                     }
             }.background(backgroundColor)
         }
